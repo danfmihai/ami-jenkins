@@ -7,8 +7,17 @@ packer {
   }
 }
 
+variable "ami_prefix" {
+  type    = string
+  default = "ami-jenkins-terraform"
+}
+
+locals {
+  timestamp = regex_replace(timestamp(), "[- TZ:]", "")
+}
+
 source "amazon-ebs" "jenkins" {
-  ami_name      = "ami-jenkins-terraform"
+  ami_name      = "${var.ami_prefix}-${local.timestamp}"
   instance_type = "t2.micro"
   region        = "us-east-1"
   source_ami_filter {
@@ -28,4 +37,9 @@ build {
   sources = [
     "source.amazon-ebs.jenkins"
   ]
+
+  provisioner "shell" {
+
+  }
+
 }
