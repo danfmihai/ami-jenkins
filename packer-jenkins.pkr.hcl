@@ -20,6 +20,7 @@ source "amazon-ebs" "jenkins" {
   ami_name      = "${var.ami_prefix}-${local.timestamp}"
   instance_type = "t2.micro"
   region        = "us-east-1"
+  profile       = "mihai"
   source_ami_filter {
     filters = {
       name                = "amzn2-ami-hvm-2.0*-x86_64-gp2"
@@ -39,7 +40,7 @@ build {
   ]
 
   provisioner "shell" {
-    
+    script = "install.sh"
   }
 
 }
