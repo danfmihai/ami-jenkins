@@ -7,26 +7,23 @@ packer {
   }
 }
 
-variable "ami_prefix" {
-  type    = string
-  default = "ami-jenkins-terraform"
-}
-
 locals {
   timestamp = regex_replace(timestamp(), "[- TZ:]", "")
 }
 
 source "amazon-ebs" "jenkins" {
   ami_name      = "${var.ami_prefix}-${local.timestamp}"
-  instance_type = "t2.micro"
-  region        = "us-east-1"
-  profile       = "jenkins"
+  instance_type = var.instance_type
+  region        = var.region
+  profile       = var.profile_name
+  
   source_ami_filter {
     filters = {
       name                = "amzn2-ami-hvm*-x86_64-gp2"
       root-device-type    = "ebs"
       virtualization-type = "hvm"
     }
+    
     most_recent = true
     owners      = ["amazon"]
   }
