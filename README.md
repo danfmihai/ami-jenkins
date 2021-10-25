@@ -2,8 +2,10 @@
 
 ## Prerequisites:
 
-- Form the machine your running Packer make sure you have the AWS CLI credentials to be able to connect to AWS.
+- Form the machine you're running Packer make sure you have the AWS CLI credentials to be able to connect to AWS. Check with command : `$ aws configure`
 - Packer installed
+- AWS CLI installed
+
 
 To build the image AMI use:
 
@@ -14,3 +16,5 @@ $ cd ami-jenkins/
 $ packer init .
 $ packer build .
 ```
+
+or use a Jenkins pipeline with `Jenkins.groovy file`
