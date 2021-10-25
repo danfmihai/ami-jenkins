@@ -23,7 +23,7 @@ source "amazon-ebs" "jenkins" {
   profile       = "jenkins"
   source_ami_filter {
     filters = {
-      name                = "amzn-ami-hvm*-x86_64-gp2"
+      name                = "amzn2-ami-hvm*-x86_64-gp2"
       root-device-type    = "ebs"
       virtualization-type = "hvm"
     }
