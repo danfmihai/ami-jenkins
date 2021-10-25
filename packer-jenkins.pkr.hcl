@@ -7,6 +7,11 @@ packer {
   }
 }
 
+variable "ami_prefix" {}
+variable "instance_type" {}
+variable "region" {}
+variable "profile_name" {}
+
 locals {
   timestamp = regex_replace(timestamp(), "[- TZ:]", "")
 }
